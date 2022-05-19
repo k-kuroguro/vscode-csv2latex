@@ -1,5 +1,6 @@
 # CSV2LaTeX
 
+[![Marketplace Version](https://vsmarketplacebadge.apphb.com/version-short/k-kuroguro.csv2latex.svg)](https://marketplace.visualstudio.com/items?itemName=k-kuroguro.csv2latex)
 [![CI](https://github.com/k-kuroguro/vscode-csv2latex/actions/workflows/main.yaml/badge.svg)](https://github.com/k-kuroguro/vscode-csv2latex/actions/workflows/main.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
