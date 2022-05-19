@@ -1,6 +1,6 @@
 {
-   "name": "extension-name",
-   "displayName": "Extension Name",
+   "name": "csv2latex",
+   "displayName": "CSV2LaTeX",
    "description": "",
    "publisher": "k-kuroguro",
    "version": "0.0.1",
@@ -12,19 +12,57 @@
       "Other"
    ],
    "license": "MIT",
-   "homepage": "https://github.com/k-kuroguro/vscode-extension-template/blob/master/README.md",
+   "homepage": "https://github.com/k-kuroguro/vscode-csv2latex/blob/master/README.md",
    "repository": {
       "type": "git",
-      "url": "https://github.com/k-kuroguro/vscode-extension-template.git"
+      "url": "https://github.com/k-kuroguro/vscode-csv2latex.git"
    },
    "bugs": {
-      "url": "https://github.com/k-kuroguro/vscode-extension-template/issues"
+      "url": "https://github.com/k-kuroguro/vscode-csv2latex/issues"
    },
    "activationEvents": [
-      "*"
+      "onLanguage:tex",
+      "onLanguage:latex"
    ],
    "main": "./dist/extension.js",
-   "contributes": {},
+   "contributes": {
+      "commands": [
+         {
+            "command": "csv2latex.pasteAsTabularFromCsv",
+            "title": "Paste As Tabular From CSV",
+            "category": "CSV2LaTeX"
+         },
+         {
+            "command": "csv2latex.pasteAsTabularFromExcel",
+            "title": "Paste As Tabular From Excel",
+            "category": "CSV2LaTeX"
+         }
+      ],
+      "menus": {
+         "editor/context": [
+            {
+               "when": "resourceLangId == tex || resourceLangId == latex",
+               "command": "csv2latex.pasteAsTabularFromCsv",
+               "group": "9_cutcopypaste@98"
+            },
+            {
+               "when": "resourceLangId == tex || resourceLangId == latex",
+               "command": "csv2latex.pasteAsTabularFromExcel",
+               "group": "9_cutcopypaste@99"
+            }
+         ],
+         "commandPalette": [
+            {
+               "when": "editorLangId == tex || editorLangId == latex",
+               "command": "csv2latex.pasteAsTabularFromCsv"
+            },
+            {
+               "when": "editorLangId == tex || editorLangId == latex",
+               "command": "csv2latex.pasteAsTabularFromExcel"
+            }
+         ]
+      }
+   },
    "scripts": {
       "vscode:prepublish": "npm run webpack:prod",
       "webpack:dev": "webpack --mode development",
@@ -56,6 +94,7 @@
       "webpack-cli": "^4.4.0"
    },
    "dependencies": {
+      "csv-parse": "^5.0.4",
       "node": "^16.4.0"
    }
 }

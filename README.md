@@ -1,1 +1,1 @@
-# VSCode Extension Template
+# CSV2LaTeX
