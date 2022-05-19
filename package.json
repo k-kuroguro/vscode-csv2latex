@@ -1,9 +1,9 @@
 {
    "name": "csv2latex",
    "displayName": "CSV2LaTeX",
-   "description": "",
+   "description": "VSCode extension for converting CSV or Excel table to LaTeX tabular.",
    "publisher": "k-kuroguro",
-   "version": "0.0.1",
+   "version": "1.0.0",
    "icon": "resources/icon.png",
    "engines": {
       "vscode": "^1.58.0"
