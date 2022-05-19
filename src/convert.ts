@@ -19,7 +19,7 @@ const escape = (text: string): string => {
    return text.replace(/[#$%&~_^\\{}|<>]/g, m => specialChars[m] ?? m);
 };
 
-const convert = async (text: string, delimiter: string): Promise<string | undefined> => {
+const convert = async (text: string, delimiter: string): Promise<string> => {
    return new Promise((res, rej) => {
       parse(text, { delimiter }, (err, data: string[][]) => {
          if (err) rej(err);

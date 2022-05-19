@@ -71,11 +71,14 @@
       "watch": "npm run webpack:watch",
       "tsc": "tsc -p ./",
       "tsc:watch": "tsc -watch -p ./",
-      "test-compile": "run-p webpack:dev tsc",
-      "test-watch": "run-p webpack:watch tsc:watch",
+      "test-compile": "run-p test-copy webpack:dev tsc",
+      "test-watch": "run-p test-copy webpack:watch tsc:watch",
       "pretest": "npm run test-compile && npm run lint",
       "lint": "eslint src --ext ts",
-      "test": "node ./out/test/runTest.js"
+      "test": "node ./out/test/runTest.js",
+      "test-copy": "npm run test-copy:input && npm run test-copy:output",
+      "test-copy:input": "npx cpy-cli ./src/test/suite/**/*.in ./out/test/suite/",
+      "test-copy:output": "npx cpy-cli ./src/test/suite/**/*.out ./out/test/suite/"
    },
    "devDependencies": {
       "@types/glob": "^7.1.3",
@@ -84,6 +87,7 @@
       "@types/vscode": "^1.57.0",
       "@typescript-eslint/eslint-plugin": "^4.14.1",
       "@typescript-eslint/parser": "^4.14.1",
+      "cpy-cli": "^4.1.0",
       "eslint": "^7.19.0",
       "mocha": "^8.2.1",
       "npm-run-all": "^4.1.5",
