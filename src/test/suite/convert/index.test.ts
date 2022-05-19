@@ -11,8 +11,8 @@ suite('Conversion', () => {
 
    const testConversion = async (inputType: InputType) => {
       const [inputFilename, delimiter] = inputType === 'csv' ? ['csv.in', ','] : ['excel.in', '\t'];
-      const input = readFileSync(join(__dirname, inputFilename)).toString();
-      const expectedOutput = makeConsistent(readFileSync(join(__dirname, 'tabular.out')).toString());
+      const input = readFileSync(join(__dirname, 'in_out', inputFilename)).toString();
+      const expectedOutput = makeConsistent(readFileSync(join(__dirname, 'in_out', 'tabular.out')).toString());
       const output = makeConsistent(await convert(input, delimiter));
       assert.strictEqual(output, expectedOutput);
    };
