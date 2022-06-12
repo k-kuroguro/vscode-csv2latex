@@ -36,6 +36,16 @@
             "command": "csv2latex.pasteAsTabularFromExcel",
             "title": "Paste As Tabular From Excel",
             "category": "CSV2LaTeX"
+         },
+         {
+            "command": "csv2latex.enablePastingBodyOnly",
+            "title": "Enable Pasting Body Only",
+            "category": "CSV2LaTeX"
+         },
+         {
+            "command": "csv2latex.disablePastingBodyOnly",
+            "title": "Disable Pasting Body Only",
+            "category": "CSV2LaTeX"
          }
       ],
       "menus": {

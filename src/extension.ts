@@ -27,10 +27,15 @@ const pasteAsTabular = async (delimiter: string) => {
    });
 };
 
+const enablePastingBodyOnly = () => workspace.getConfiguration(extensionName).update('pasteBodyOnly', true);
+const disablePastingBodyOnly = () => workspace.getConfiguration(extensionName).update('pasteBodyOnly', false);
+
 export function activate() {
    disposables.push(
       commands.registerCommand(`${extensionName}.pasteAsTabularFromCsv`, () => pasteAsTabular(',')),
-      commands.registerCommand(`${extensionName}.pasteAsTabularFromExcel`, () => pasteAsTabular('\t'))
+      commands.registerCommand(`${extensionName}.pasteAsTabularFromExcel`, () => pasteAsTabular('\t')),
+      commands.registerCommand(`${extensionName}.enablePastingBodyOnly`, () => enablePastingBodyOnly()),
+      commands.registerCommand(`${extensionName}.disablePastingBodyOnly`, () => disablePastingBodyOnly())
    );
 }
 
