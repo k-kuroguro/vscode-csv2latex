@@ -61,6 +61,17 @@
                "command": "csv2latex.pasteAsTabularFromExcel"
             }
          ]
+      },
+      "configuration": {
+         "type": "object",
+         "title": "CSV2LaTeX",
+         "properties": {
+            "csv2latex.pasteBodyOnly": {
+               "type": "boolean",
+               "default": false,
+               "description": "Controls whether to paste body only."
+            }
+         }
       }
    },
    "scripts": {

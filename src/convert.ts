@@ -1,5 +1,9 @@
 import { parse } from 'csv-parse';
 
+type Options = {
+   pasteBodyOnly: boolean
+};
+
 const escape = (text: string): string => {
    const specialChars: { [key in string]: string } = {
       '#': '\\#',
@@ -19,7 +23,7 @@ const escape = (text: string): string => {
    return text.replace(/[#$%&~_^\\{}|<>]/g, m => specialChars[m] ?? m);
 };
 
-const convert = async (text: string, delimiter: string): Promise<string> => {
+const convert = async (text: string, delimiter: string, options?: Partial<Options>): Promise<string> => {
    return new Promise((res, rej) => {
       parse(text, { delimiter }, (err, data: string[][]) => {
          if (err) rej(err);
@@ -29,7 +33,7 @@ const convert = async (text: string, delimiter: string): Promise<string> => {
             if (maxCol < row.length) maxCol = row.length;
          });
 
-         let tabular = `\\begin{table}\n\\begin{tabular}{${Array(maxCol).fill('l').join('')}}\n`;
+         let tabular = options?.pasteBodyOnly ? '' : `\\begin{table}\n\\begin{tabular}{${Array(maxCol).fill('l').join('')}}\n`;
          data.forEach(row => {
             row.forEach((cell, index) => {
                tabular += escape(cell) + (index === row.length - 1 ? '' : '&');
@@ -37,7 +41,7 @@ const convert = async (text: string, delimiter: string): Promise<string> => {
             if (row.length < maxCol) tabular += '&' + Array(maxCol - row.length).join('&');
             tabular += '\\\\\n';
          });
-         tabular += '\\end{tabular}\n\\end{table}\n';
+         tabular += options?.pasteBodyOnly ? '' : '\\end{tabular}\n\\end{table}\n';
          res(tabular);
       });
    });
